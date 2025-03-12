@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Receita - Receitas Culinárias{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Confirmar Exclusão</h2>
+    <p>Tem certeza que deseja excluir a receita "{{ receita.titulo }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+        <a href="{% url 'listar_receitas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">{{ receita.titulo }}</h1>
+                    
+                    <!-- Sistema de Avaliação -->
+                    <div class="rating-container mb-4">
+                        <h4>Avaliação</h4>
+                        <div class="rating-stars large" data-receita-id="{{ receita.pk }}">
+                            {% include 'partials/_estrelas.html' with receita=receita %}
+                        </div>
+                        {% if not user.is_authenticated %}
+                            <small class="text-muted d-block mt-2">
+                                Faça login para avaliar esta receita
+                            </small>
+                        {% endif %}
+                    </div>
+
+                    <!-- Resto do conteúdo da receita -->
+                    <!-- ... -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% csrf_token %}
+{% endblock %} 

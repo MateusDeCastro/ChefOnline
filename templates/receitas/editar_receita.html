@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Alterar Receita - Receitas Culinárias{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Alterar Receita</h2>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo" value="{{ receita.titulo }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="descricao" name="descricao" rows="3" required>{{ receita.descricao }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ingredientes" class="form-label">Ingredientes</label>
+                            <textarea class="form-control" id="ingredientes" name="ingredientes" rows="5" required>{{ receita.ingredientes }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modo_preparo" class="form-label">Modo de Preparo</label>
+                            <textarea class="form-control" id="modo_preparo" name="modo_preparo" rows="5" required>{{ receita.modo_preparo }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tempo_preparo" class="form-label">Tempo de Preparo (em minutos)</label>
+                            <input type="number" class="form-control" id="tempo_preparo" name="tempo_preparo" value="{{ receita.tempo_preparo }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <input type="text" class="form-control" id="categoria" name="categoria" value="{{ receita.categoria }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nivel_dificuldade" class="form-label">Nível de Dificuldade</label>
+                            <select class="form-select" id="nivel_dificuldade" name="nivel_dificuldade" required>
+                                <option value="F" {% if receita.nivel_dificuldade == 'F' %}selected{% endif %}>Fácil</option>
+                                <option value="M" {% if receita.nivel_dificuldade == 'M' %}selected{% endif %}>Médio</option>
+                                <option value="D" {% if receita.nivel_dificuldade == 'D' %}selected{% endif %}>Difícil</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Foto Atual</label>
+                            {% if receita.foto %}
+                                <img src="{{ receita.foto.url }}" alt="{{ receita.titulo }}" class="img-thumbnail mb-2" style="max-width: 200px; max-height: 200px;">
+                            {% else %}
+                                <span class="text-muted">Sem foto</span>
+                            {% endif %}
+                            <label for="foto" class="form-label">Substituir Foto</label>
+                            <input type="file" class="form-control" id="foto" name="foto">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Salvar Receita
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

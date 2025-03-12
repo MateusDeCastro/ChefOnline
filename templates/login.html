@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if user.is_authenticated %}
+        Bem-vindo - Receitas Culinárias
+    {% else %}
+        Login - Receitas Culinárias
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            {% if user.is_authenticated %}
+                <h2 class="mb-4 text-center">Bem-vindo</h2>
+                <p class="text-center">Olá, {{ user.get_full_name }}!</p>
+                <div class="text-center">
+                    <a href="{% url 'receitas' %}" class="btn btn-primary">Ver Receitas</a>
+                </div>
+            {% else %}
+                <h2 class="mb-4 text-center">Login</h2>
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuário</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    {% if alerta %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ alerta }}
+                        </div>
+                    {% endif %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                        <a href="{% url 'register' %}" class="btn btn-outline-secondary">Criar Conta</a>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="{% url 'esqueceu_senha' %}">Esqueceu a senha?</a>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Verificar Código - Receitas Culinárias{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h2 class="mb-4 text-center">Verificar Código</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Código de Verificação</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" required>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Verificar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

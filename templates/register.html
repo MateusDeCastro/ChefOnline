@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Criar Conta - Receitas Culinárias
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h2 class="mb-4 text-center">Criar Conta</h2>
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuário</label>
+                        <input type="text" name="username" id="username" class="form-control" required>
+                        {% if form.username.errors %}
+                            <div class="text-danger mt-1">{{ form.username.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                        {% if form.email.errors %}
+                            <div class="text-danger mt-1">{{ form.email.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password1" class="form-label">Senha</label>
+                        <input type="password" name="password1" id="password1" class="form-control" required>
+                        {% if form.password1.errors %}
+                            <div class="text-danger mt-1">{{ form.password1.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password2" class="form-label">Confirmar Senha</label>
+                        <input type="password" name="password2" id="password2" class="form-control" required>
+                        {% if form.password2.errors %}
+                            <div class="text-danger mt-1">{{ form.password2.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <a href="{% url 'login' %}" class="btn btn-outline-secondary">Já tenho uma conta</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
