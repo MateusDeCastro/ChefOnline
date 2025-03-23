@@ -19,6 +19,9 @@
                             <h1 class="card-title h2 mb-0">{{ receita.titulo }}</h1>
                             {% if is_owner %}
                                 <div class="btn-group">
+                                    <a href="{% url 'receitas' %}" class="btn btn-outline-light">
+                                        <i class="fas fa-arrow-left"></i> Voltar para Receitas
+                                    </a>
                                     <a href="{% url 'editar_receita' receita.pk %}" class="btn btn-outline-light">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
