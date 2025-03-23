@@ -10,6 +10,7 @@ O ChefOnline é uma plataforma que facilita a conexão entre chefs e amantes da 
 
  ✅ Bootstrap
 
- ✅ Autenticação e gerenciamento de usuários
+ ✅ Pillow
+
 
 Esse projeto me permitiu aprofundar meus conhecimentos em desenvolvimento web, arquitetura de software e boas práticas no Django. Estou animado para aprimorá-lo ainda mais e receber feedbacks da comunidade!
